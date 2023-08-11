@@ -1,0 +1,4 @@
+shared/config/backend.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+.terraform

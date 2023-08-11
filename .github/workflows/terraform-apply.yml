@@ -1,0 +1,31 @@
+---
+name: Terraform Apply
+on:
+    workflow_dispatch:
+
+jobs:
+  terraform-apply:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+    env:
+      KEY: "terraform.tfstate"
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TERRAFORM_PRE_RUN: |
+        apt-get update
+        apt-get install -y zip python
+
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+
+        - name: Apply ( ${{ inputs.environment }} )
+          uses: dflook/terraform-apply@v1
+          with:
+            path: terraform/
+            auto_approve: true
+            backend_config: >
+              access_key=${{ secrets.AWS_ACCESS_KEY_ID }},
+              secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              bucket=${{ secrets.terraform_BUCKET }},
+              region=${{ secrets.AWS_REGION }},
+              key=${{ env.KEY }},
