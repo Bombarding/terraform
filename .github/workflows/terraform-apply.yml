@@ -18,7 +18,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
-        - name: Apply ( ${{ inputs.environment }} )
+        - name: Run Terraform Apply
           uses: dflook/terraform-apply@v1
           with:
             path: terraform/
@@ -26,6 +26,6 @@ jobs:
             backend_config: >
               access_key=${{ secrets.AWS_ACCESS_KEY_ID }},
               secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-              bucket=${{ secrets.terraform_BUCKET }},
+              bucket=${{ secrets.AWS_BUCKET }},
               region=${{ secrets.AWS_REGION }},
               key=${{ env.KEY }},
