@@ -23,7 +23,7 @@ jobs:
             path: terraform/
             auto_approve: true
             backend_config: >
-              access_key=${{ secrets.AWS_ACCESS_KEY_ID }}
-              secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-              bucket=${{ secrets.AWS_BUCKET }}
-              region=${{ secrets.AWS_REGION }}
+              access_key=${{ secrets.AWS_ACCESS_KEY_ID }},
+              secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }},
+              bucket=${{ secrets.AWS_BUCKET }},
+              region=${{ secrets.AWS_REGION }},
