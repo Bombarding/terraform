@@ -37,4 +37,7 @@ jobs:
         continue-on-error: true
         with:
           path: terraform/
-          workspace: ${{ github.head_ref }}
+          backend_config: >
+            access_key=${{ secrets.AWS_ACCESS_KEY_ID }},
+            secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }},
+            bucket=${{ secrets.AWS_BUCKET }},
