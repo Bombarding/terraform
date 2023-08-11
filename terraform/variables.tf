@@ -24,4 +24,5 @@ variable "bucket_key" {
 
 variable "cognito_pool_name" {
   type = string
+  default = "cognito-pool"
 }
