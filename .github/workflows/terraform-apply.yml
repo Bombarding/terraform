@@ -8,7 +8,6 @@ jobs:
     name: Terraform Apply
     runs-on: ubuntu-latest
     env:
-      KEY: "terraform.tfstate"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TERRAFORM_PRE_RUN: |
         apt-get update
@@ -28,4 +27,3 @@ jobs:
               secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
               bucket=${{ secrets.AWS_BUCKET }},
               region=${{ secrets.AWS_REGION }},
-              key=${{ env.KEY }},
