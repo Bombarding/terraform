@@ -13,9 +13,12 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
-        - name: Terraform Init
-          working-directory: terraform/
-          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY}}"
+        - name: Configure AWS Credentials Action For GitHub Actions
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
 
         - name: Run Terraform Apply
           uses: dflook/terraform-apply@v1
@@ -26,3 +29,10 @@ jobs:
               access_key=${{ secrets.AWS_ACCESS_KEY_ID }},
               secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }},
               bucket=${{ secrets.AWS_BUCKET }},
+
+        - name: terraform destroy
+          uses: dflook/terraform-destroy@v1
+          continue-on-error: true
+          with:
+            path: terraform/
+            workspace: ${{ github.head_ref }}
