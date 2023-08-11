@@ -13,6 +13,10 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
+        - name: Terraform Init
+          working-directory: terraform/
+          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY}}"
+
         - name: Run Terraform Apply
           uses: dflook/terraform-apply@v1
           with:
