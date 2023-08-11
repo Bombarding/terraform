@@ -1,11 +1,11 @@
 variable "bucket" {
-  type    = string
+  type = string
 }
 
 variable "region" {
   type        = string
   description = "The region in which the resources will be created"
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
 variable "access_key" {
@@ -24,6 +24,6 @@ variable "bucket_key" {
 }
 
 variable "cognito_pool_name" {
-  type = string
+  type    = string
   default = "cognito-pool"
 }
