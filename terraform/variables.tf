@@ -1,5 +1,5 @@
 variable "bucket" {
-  type = string
+  type    = string
   default = "terraform-bucket-personal"
 }
 
@@ -21,3 +21,8 @@ variable "cognito_pool_name" {
 
 variable "access_key" {}
 variable "secret_key" {}
+
+variable "vpc_cidr" {
+  type    = string
+  default = "99.0.0.0/24"
+}
