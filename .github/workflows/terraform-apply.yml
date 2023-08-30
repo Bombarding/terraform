@@ -25,6 +25,7 @@ jobs:
           path: ./terraform
 
   terraform-apply:
+    needs: [terraform-lint]
     name: Terraform Apply
     runs-on: ubuntu-latest
     steps:
